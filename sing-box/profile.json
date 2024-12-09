@@ -1,0 +1,921 @@
+{
+    "log": {
+        "disabled": false,
+        "level": "debug",
+        "timestamp": true
+    },
+    "dns": {
+        "servers": [
+            {
+                "tag": "dns_proxy",
+                "address": "tls://1.1.1.1",
+                "address_resolver": "dns_resolver"
+            },
+            {
+                "tag": "dns_direct",
+                "address": "h3://dns.alidns.com/dns-query",
+                "address_resolver": "dns_resolver",
+                "detour": "DIRECT"
+            },
+            {
+                "tag": "dns_fakeip",
+                "address": "fakeip"
+            },
+            {
+                "tag": "dns_resolver",
+                "address": "223.5.5.5",
+                "detour": "DIRECT"
+            },
+            {
+                "tag": "block",
+                "address": "rcode://success"
+            }
+        ],
+        "rules": [
+            {
+                "outbound": [
+                    "any"
+                ],
+                "server": "dns_resolver"
+            }
+        ],
+        "final": "dns_direct",
+        "independent_cache": true,
+        "fakeip": {
+            "enabled": true,
+            "inet6_range": "fc00::/18",
+            "inet4_range": "198.18.0.0/15"
+        }
+    },
+    "ntp": {
+        "enabled": true,
+        "server": "time.apple.com",
+        "server_port": 123,
+        "interval": "30m",
+        "detour": "DIRECT"
+    },
+    "inbounds": [
+        {
+            "type": "mixed",
+            "tag": "mixed-in",
+            "listen": "0.0.0.0",
+            "listen_port": 2080
+        },
+        {
+            "type": "tun",
+            "tag": "tun-in",
+            "inet4_address": "172.19.0.1/30",
+            "inet6_address": "fdfe:dcba:9876::1/126",
+            "auto_route": true,
+            "strict_route": true,
+            "stack": "mixed",
+            "sniff": true
+        }
+    ],
+    "outbounds": [
+        {
+            "type": "direct",
+            "tag": "DIRECT"
+        },
+        {
+            "type": "block",
+            "tag": "REJECT"
+        },
+        {
+            "type": "dns",
+            "tag": "dns-out"
+        },
+        {
+            "type": "vmess",
+            "tag": "🇭🇰 HK丨香港1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 10101,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇭🇰 HK丨香港2",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 10102,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇭🇰 HK丨香港3",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 10103,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇭🇰 HK丨香港4",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 10104,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇭🇰 HK丨香港5",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 10105,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇨🇳 TW丨台湾1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 10201,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇨🇳 TW丨台湾2",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 10202,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇨🇳 TW丨台湾3",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 10203,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇯🇵 JP丨日本1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 10301,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇯🇵 JP丨日本2",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 10302,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇯🇵 JP丨日本3",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 10303,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇯🇵 JP丨日本4",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 10304,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇰🇷 KR丨韩国1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 10401,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇰🇷 KR丨韩国2",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 10402,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇰🇷 KR丨韩国3",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 10403,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇸🇬 SG丨新加坡1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 10501,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇸🇬 SG丨新加坡2",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 10502,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇸🇬 SG丨新加坡3",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 10503,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇲🇾 MY丨马来西亚1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 10601,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇵🇭 PH丨菲律宾1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 10701,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇵🇭 PH丨菲律宾2",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 10702,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇮🇩 ID丨印度尼西亚1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 10801,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇮🇳 IN丨印度1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 10901,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇹🇭 TH丨泰国1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 11001,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇻🇳 VN丨越南1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 11101,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇵🇰 PK丨巴基斯坦1-3x",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 11201,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇮🇱 IL丨以色列1-2x",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 11301,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇰🇿 KZ丨哈萨克斯坦1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 11401,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇦🇪 AE丨阿联酋1-3x",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 11501,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇦🇺 AU丨澳大利亚1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 11601,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇦🇺 AU丨澳大利亚2",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 11602,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇸🇬 NZ丨新西兰1-3x",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 11701,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇺🇸 US丨加利福利亚1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 20101,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇺🇸 US丨纽约1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 20201,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇺🇸 US丨得克萨斯1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 20301,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇺🇸 US丨佛罗里达1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 20401,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇺🇸 US丨华盛顿1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 20501,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇺🇸 US丨伊利诺伊1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 20601,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇨🇦 CA丨加拿大1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 20701,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇲🇽 MX丨墨西哥1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 20801,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇦🇷 AR丨阿根廷1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 30101,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇧🇷 BR丨巴西1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 30201,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇬🇧 UK丨英国1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 40101,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇬🇧 UK丨英国2",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 40102,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇬🇧 UK丨英国3",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 40103,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇫🇷 FR丨法国1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 40201,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇩🇪 DE丨德国1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 40301,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇮🇹 IT丨意大利1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 40401,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇳🇱 NL丨荷兰1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 40501,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇸🇪 SE丨瑞典1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 40601,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇷🇺 RU丨俄罗斯1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 40701,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇺🇦 UA丨乌克兰1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 40801,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇹🇷 TR丨土耳其1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 40901,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇵🇱 PL丨波兰1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 41001,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇩🇰 DK丨丹麦1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 41101,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇱🇹 LT丨立陶宛1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 41201,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇱🇻 LV丨拉脱维亚1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 41301,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇨🇭 CH丨瑞士1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 41401,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇷🇴 RO丨罗马尼亚1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 41501,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇪🇬 EG丨埃及1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 50101,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇿🇦 ZA丨南非1",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 50201,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "vmess",
+            "tag": "🇳🇬 NG丨尼日利亚1-3x",
+            "server": "f3grveyq.gabuit.com",
+            "server_port": 50301,
+            "uuid": "9CDAD319-4F4B-ABBD-CA67-5F39FA999D80",
+            "alter_id": 0,
+            "security": "auto",
+            "tcp_fast_open": false
+        },
+        {
+            "type": "selector",
+            "tag": "代理",
+            "outbounds": [
+                "🇭🇰 HK丨香港1",
+                "🇭🇰 HK丨香港2",
+                "🇭🇰 HK丨香港3",
+                "🇭🇰 HK丨香港4",
+                "🇭🇰 HK丨香港5",
+                "🇨🇳 TW丨台湾1",
+                "🇨🇳 TW丨台湾2",
+                "🇨🇳 TW丨台湾3",
+                "🇯🇵 JP丨日本1",
+                "🇯🇵 JP丨日本2",
+                "🇯🇵 JP丨日本3",
+                "🇯🇵 JP丨日本4",
+                "🇰🇷 KR丨韩国1",
+                "🇰🇷 KR丨韩国2",
+                "🇰🇷 KR丨韩国3",
+                "🇸🇬 SG丨新加坡1",
+                "🇸🇬 SG丨新加坡2",
+                "🇸🇬 SG丨新加坡3",
+                "🇲🇾 MY丨马来西亚1",
+                "🇵🇭 PH丨菲律宾1",
+                "🇵🇭 PH丨菲律宾2",
+                "🇮🇩 ID丨印度尼西亚1",
+                "🇮🇳 IN丨印度1",
+                "🇹🇭 TH丨泰国1",
+                "🇻🇳 VN丨越南1",
+                "🇵🇰 PK丨巴基斯坦1-3x",
+                "🇮🇱 IL丨以色列1-2x",
+                "🇰🇿 KZ丨哈萨克斯坦1",
+                "🇦🇪 AE丨阿联酋1-3x",
+                "🇦🇺 AU丨澳大利亚1",
+                "🇦🇺 AU丨澳大利亚2",
+                "🇸🇬 NZ丨新西兰1-3x",
+                "🇺🇸 US丨加利福利亚1",
+                "🇺🇸 US丨纽约1",
+                "🇺🇸 US丨得克萨斯1",
+                "🇺🇸 US丨佛罗里达1",
+                "🇺🇸 US丨华盛顿1",
+                "🇺🇸 US丨伊利诺伊1",
+                "🇨🇦 CA丨加拿大1",
+                "🇲🇽 MX丨墨西哥1",
+                "🇦🇷 AR丨阿根廷1",
+                "🇧🇷 BR丨巴西1",
+                "🇬🇧 UK丨英国1",
+                "🇬🇧 UK丨英国2",
+                "🇬🇧 UK丨英国3",
+                "🇫🇷 FR丨法国1",
+                "🇩🇪 DE丨德国1",
+                "🇮🇹 IT丨意大利1",
+                "🇳🇱 NL丨荷兰1",
+                "🇸🇪 SE丨瑞典1",
+                "🇷🇺 RU丨俄罗斯1",
+                "🇺🇦 UA丨乌克兰1",
+                "🇹🇷 TR丨土耳其1",
+                "🇵🇱 PL丨波兰1",
+                "🇩🇰 DK丨丹麦1",
+                "🇱🇹 LT丨立陶宛1",
+                "🇱🇻 LV丨拉脱维亚1",
+                "🇨🇭 CH丨瑞士1",
+                "🇷🇴 RO丨罗马尼亚1",
+                "🇪🇬 EG丨埃及1",
+                "🇿🇦 ZA丨南非1",
+                "🇳🇬 NG丨尼日利亚1-3x"
+            ]
+        },
+        {
+            "type": "selector",
+            "tag": "规则外路由选择",
+            "outbounds": [
+                "代理",
+                "DIRECT"
+            ]
+        },
+        {
+            "type": "selector",
+            "tag": "GLOBAL",
+            "outbounds": [
+                "DIRECT",
+                "🇭🇰 HK丨香港1",
+                "🇭🇰 HK丨香港2",
+                "🇭🇰 HK丨香港3",
+                "🇭🇰 HK丨香港4",
+                "🇭🇰 HK丨香港5",
+                "🇨🇳 TW丨台湾1",
+                "🇨🇳 TW丨台湾2",
+                "🇨🇳 TW丨台湾3",
+                "🇯🇵 JP丨日本1",
+                "🇯🇵 JP丨日本2",
+                "🇯🇵 JP丨日本3",
+                "🇯🇵 JP丨日本4",
+                "🇰🇷 KR丨韩国1",
+                "🇰🇷 KR丨韩国2",
+                "🇰🇷 KR丨韩国3",
+                "🇸🇬 SG丨新加坡1",
+                "🇸🇬 SG丨新加坡2",
+                "🇸🇬 SG丨新加坡3",
+                "🇲🇾 MY丨马来西亚1",
+                "🇵🇭 PH丨菲律宾1",
+                "🇵🇭 PH丨菲律宾2",
+                "🇮🇩 ID丨印度尼西亚1",
+                "🇮🇳 IN丨印度1",
+                "🇹🇭 TH丨泰国1",
+                "🇻🇳 VN丨越南1",
+                "🇵🇰 PK丨巴基斯坦1-3x",
+                "🇮🇱 IL丨以色列1-2x",
+                "🇰🇿 KZ丨哈萨克斯坦1",
+                "🇦🇪 AE丨阿联酋1-3x",
+                "🇦🇺 AU丨澳大利亚1",
+                "🇦🇺 AU丨澳大利亚2",
+                "🇸🇬 NZ丨新西兰1-3x",
+                "🇺🇸 US丨加利福利亚1",
+                "🇺🇸 US丨纽约1",
+                "🇺🇸 US丨得克萨斯1",
+                "🇺🇸 US丨佛罗里达1",
+                "🇺🇸 US丨华盛顿1",
+                "🇺🇸 US丨伊利诺伊1",
+                "🇨🇦 CA丨加拿大1",
+                "🇲🇽 MX丨墨西哥1",
+                "🇦🇷 AR丨阿根廷1",
+                "🇧🇷 BR丨巴西1",
+                "🇬🇧 UK丨英国1",
+                "🇬🇧 UK丨英国2",
+                "🇬🇧 UK丨英国3",
+                "🇫🇷 FR丨法国1",
+                "🇩🇪 DE丨德国1",
+                "🇮🇹 IT丨意大利1",
+                "🇳🇱 NL丨荷兰1",
+                "🇸🇪 SE丨瑞典1",
+                "🇷🇺 RU丨俄罗斯1",
+                "🇺🇦 UA丨乌克兰1",
+                "🇹🇷 TR丨土耳其1",
+                "🇵🇱 PL丨波兰1",
+                "🇩🇰 DK丨丹麦1",
+                "🇱🇹 LT丨立陶宛1",
+                "🇱🇻 LV丨拉脱维亚1",
+                "🇨🇭 CH丨瑞士1",
+                "🇷🇴 RO丨罗马尼亚1",
+                "🇪🇬 EG丨埃及1",
+                "🇿🇦 ZA丨南非1",
+                "🇳🇬 NG丨尼日利亚1-3x"
+            ]
+        }
+    ],
+    "route": {
+        "rules": [
+            {
+                "clash_mode": "Global",
+                "outbound": "GLOBAL"
+            },
+            {
+                "clash_mode": "Direct",
+                "outbound": "DIRECT"
+            },
+            {
+                "protocol": "dns",
+                "outbound": "dns-out"
+            },
+            {
+                "domain_suffix": [
+                    "local"
+                ],
+                "ip_cidr": [
+                    "192.168.0.0/16",
+                    "10.0.0.0/8",
+                    "172.16.0.0/12",
+                    "127.0.0.0/8",
+                    "100.64.0.0/10"
+                ],
+                "outbound": "DIRECT"
+            },
+            {
+                "process_name": [
+                    "aria2c",
+                    "fdm",
+                    "folx",
+                    "nettransport",
+                    "thunder",
+                    "transmission",
+                    "utorrent",
+                    "webtorrent",
+                    "webtorrent helper",
+                    "downloadservice",
+                    "weiyun"
+                ],
+                "domain_keyword": [
+                    "aria2",
+                    "xunlei",
+                    "yunpan",
+                    "thunder",
+                    "xlliveud"
+                ],
+                "outbound": "DIRECT"
+            },
+            {
+                "outbound": "DIRECT"
+            }
+        ],
+        "auto_detect_interface": true,
+        "final": "规则外路由选择"
+    },
+    "experimental": {
+        "cache_file": {
+            "enabled": true,
+            "store_fakeip": true
+        },
+        "clash_api": {
+            "external_controller": "127.0.0.1:9090",
+            "external_ui": "dashboard"
+        }
+    }
+}
