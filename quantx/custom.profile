@@ -14,4 +14,4 @@
 # ip-cidr, 224.0.0.0/24, direct
 # geoip, cn, direct
 # final, proxy
-ip-cidr, 47.239.209.241, direct
+ip-cidr, 47.239.209.0/8, direct
