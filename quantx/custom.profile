@@ -15,3 +15,4 @@
 # geoip, cn, direct
 # final, proxy
 ip-cidr, 47.239.209.0/8, direct
+host-suffix, xiaxixi.cn, direct
