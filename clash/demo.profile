@@ -455,9 +455,14 @@ rule-providers:
     url: https://cdn.jsdelivr.net/gh/17mon/china_ip_list@master/china_ip_list.txt
     interval: 86400
  
-  apple-domain:
+  special-domain:
     behavior: domain-text
-    url: 'https://cdn.jsdelivr.net/gh/Hackl0us/SS-Rule-Snippet@master/Rulesets/Clash/Basic/Apple-direct.yaml'
+    url: 'https://raw.githubusercontent.com/skymirros/proxy/refs/heads/master/clash/special-domain.text'
+    interval: 86400
+  
+  special-ip:
+    behavior: ipcidr-text
+    url: 'https://raw.githubusercontent.com/skymirros/proxy/refs/heads/master/clash/special-ip.text'
     interval: 86400
  
 rules:

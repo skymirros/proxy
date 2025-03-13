@@ -1,5 +1,0 @@
-google
-aws
-amazon
-blogspot
-phobos
