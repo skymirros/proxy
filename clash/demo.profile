@@ -455,6 +455,11 @@ rule-providers:
     url: 'https://cdn.jsdelivr.net/gh/17mon/china_ip_list@master/china_ip_list.txt'
     interval: 86400
   
+  need-proxy:
+    behavior: domain-set
+    url: 'https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/proxy.txt'
+    interval: 86400
+  
   special-domain: # 特殊服务的域名，如Apple、Stream下载
     behavior: domain-text
     url: 'https://raw.githubusercontent.com/skymirros/proxy/refs/heads/master/clash/special-domain.text'
