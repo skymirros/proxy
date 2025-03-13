@@ -52,10 +52,10 @@ http:
 #       argument: '' # script argument (optional)
 #       debug: false # 开发模式，每次执行前会从 provider 加载最新脚本
 # script-providers:
-# script:
-#   shortcuts: # 使用表达式编写自定义规则
-#     # 4483 与 9305 为 BiliBili 的 QUIC CDN
-#     quic: network == 'udp' and (dst_port == 443 or dst_port == 4483 or dst_port == 9305) # 可以在 rule 中引用
+script:
+  shortcuts: # 使用表达式编写自定义规则
+    # 4483 与 9305 为 BiliBili 的 QUIC CDN
+    quic: network == 'udp' and (dst_port == 443 or dst_port == 4483 or dst_port == 9305) # 可以在 rule 中引用
 # 支持通配符域名 (例如: *.clash.dev, *.foo.*.example.com )
 # 不使用通配符的域名优先级高于使用通配符的域名 (例如: foo.example.com > *.example.com > .example.com )
 # 注意: +.foo.com 的效果等同于 .foo.com 和 foo.com
@@ -147,27 +147,33 @@ proxy-groups:
 proxy-providers:
 rule-providers:
   special-classical:
-    behavior: classical-text # 特殊服务的规则，如Apple、Stream下载
+    behavior: classical # 特殊服务的规则，如Apple、Stream下载
+    format: text
     url: 'https://raw.githubusercontent.com/skymirros/proxy/refs/heads/master/clash/special-classical.txt'
     interval: 86400
   special-domain: # 特殊服务的域名，如Apple、Stream下载
-    behavior: domain-text
+    behavior: domain
+    format: text
     url: 'https://raw.githubusercontent.com/skymirros/proxy/refs/heads/master/clash/special-domain.txt'
     interval: 86400
   special-ip:
-    behavior: ipcidr-text # 特殊服务的IP，如Apple、Stream下载
+    behavior: ipcidr # 特殊服务的IP，如Apple、Stream下载
+    format: text
     url: 'https://raw.githubusercontent.com/skymirros/proxy/refs/heads/master/clash/special-ip.txt'
     interval: 86400
   china-domain:
-    behavior: domain-text
+    behavior: domain
+    format: text
     url: 'https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/direct.txt'
     interval: 86400
   need-proxy-domain:
-    behavior: domain-text
+    behavior: domain
+    format: text
     url: 'https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/proxy.txt'
     interval: 86400
   china-ip:
-    behavior: ipcidr-text
+    behavior: ipcidr
+    format: text
     url: 'https://cdn.jsdelivr.net/gh/17mon/china_ip_list@master/china_ip_list.txt'
     interval: 86400
 rules:
