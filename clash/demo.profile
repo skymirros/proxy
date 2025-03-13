@@ -445,23 +445,23 @@ proxy-providers:
  
 
 rule-providers:
-  proxy-domain-text:
-    behavior: domain-text # 推荐使用 text 格式
-    url: https://cdn.jsdelivr.net/gh/Loyalsoldier/surge-rules@release/proxy.txt
+  china-domain:
+    behavior: domain-text
+    url: 'https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/direct.txt'
     interval: 86400
 
   china-ip:
     behavior: ipcidr-text
-    url: https://cdn.jsdelivr.net/gh/17mon/china_ip_list@master/china_ip_list.txt
+    url: 'https://cdn.jsdelivr.net/gh/17mon/china_ip_list@master/china_ip_list.txt'
     interval: 86400
- 
-  special-domain:
+  
+  special-domain: # 特殊服务的域名，如Apple、Stream下载
     behavior: domain-text
     url: 'https://raw.githubusercontent.com/skymirros/proxy/refs/heads/master/clash/special-domain.text'
     interval: 86400
   
   special-ip:
-    behavior: ipcidr-text
+    behavior: ipcidr-text # 特殊服务的IP，如Apple、Stream下载
     url: 'https://raw.githubusercontent.com/skymirros/proxy/refs/heads/master/clash/special-ip.text'
     interval: 86400
  
